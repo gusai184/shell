@@ -1,0 +1,10 @@
+total 184
+-rw-r--r-- 1 dharmesh dharmesh     0 Sep  2 19:47 abc.txt
+-rw-r--r-- 1 dharmesh dharmesh  1254 Sep  2 19:30 functions.cpp
+-rw-r--r-- 1 dharmesh dharmesh 42488 Sep  2 19:30 functions.o
+-rw-r--r-- 1 dharmesh dharmesh   361 Sep  2 19:18 header.h
+-rwxr-xr-x 1 dharmesh dharmesh 40488 Sep  2 18:26 hello
+-rw-rw-r-- 1 dharmesh dharmesh  1483 Sep  2 19:28 mainfile.cpp
+-rw-r--r-- 1 dharmesh dharmesh 38944 Sep  2 19:28 mainfile.o
+-rw-r--r-- 1 dharmesh dharmesh   180 Sep  2 18:26 makefile
+-rwxr-xr-x 1 dharmesh dharmesh 45040 Sep  2 19:30 shell
