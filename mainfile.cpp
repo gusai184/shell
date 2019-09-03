@@ -1,22 +1,9 @@
 #include "header.h"
-/*
-void initShell()
-{
-	char * env[3];
-	env[0] = (char *)malloc(sizeof(256));
-	env[1] = (char *)malloc(sizeof(256));
-	string name = "LS=DHAMO";
-	string path = "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin";
-	strcpy(evc[0],path.c_str());
-	strcpy(env[1],name.c_str());
-	env[2] = (char *)NULL;
-	environ = env;
-	
-}*/
 extern char **environ;
 int main()
 {
 	string input;	
+	int file_des;
 	printWecomeMessage();
 	
 	if(clearenv()!=0)
@@ -67,19 +54,36 @@ int main()
 				if(fg==-1)
 					cout<<"Error unable to open dir";
 			}
-			else
+			else		
 			{
-				if(strcmp(args[1],">") == 0)
+
+				if(vect_size > 2  && (strcmp(args[2],">")==0 || strcmp(args[2],">>") == 0))
 				{
-					cout<<"over here";
-					int file_des = open(args[2],O_WRONLY);
+				
+				   
+					if(strcmp(args[2],">")==0)
+						file_des = open(args[3],O_WRONLY | O_CREAT,S_IRWXU);
+					else if(strcmp(args[2],">>") == 0)
+					{						
+						file_des = open(args[3],O_APPEND | O_WRONLY,S_IRWXU);
+						if(file_des<0)
+						{
+							file_des = open(args[3],O_WRONLY | O_CREAT,S_IRWXU);
+						}						
+					}
+					else
+					{
+						cout<<"errro";
+						continue;
+					}
 					if(file_des<0)
 					{
-						cout<<"Error while openting file";
+						cout<<"Error while openting file"<<endl;
 						continue;
 					}
 					dup2(file_des,1);
-					args[1] = (char *)NULL;
+					args[2] = (char *)NULL;
+					args[3] = (char *)NULL;
 					execvp(args[0],args);
 				}
 				if(execvp(args[0], args)==-1)
@@ -89,6 +93,7 @@ int main()
 		else
 		{
 			wait(NULL);
+			close(file_des);
 		}
 
 		cout<<endl;
