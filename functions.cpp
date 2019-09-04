@@ -26,8 +26,9 @@ void getArguments(string str,vector<string> &args)
    for (auto x : str) 
    { 
        if (x == ' ') 
-       {     
-           args.push_back(word);
+       {   
+       		if(word!=" ")
+           		args.push_back(word);
            word = ""; 
        } 
        else

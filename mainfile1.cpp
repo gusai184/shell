@@ -60,6 +60,7 @@ void getArgsFromString(string s, char *args[])
 }
 void executePipeCommands(vector<string> cmd)
 {
+	
 	vector<string> vectcmd;
 	separatePipe(cmd,vectcmd);
 	for(auto x:vectcmd)
@@ -82,12 +83,8 @@ void executePipeCommands(vector<string> cmd)
 
 	if(pid==0)
 	{
-		//close(fd[0]);
+	
 		dup2(fd[1],STDOUT_FILENO);
-	//	dup2(0,0);
-
-
-//		wait(NULL);
 		close(fd[0]);
 		close(fd[1]);
 		execvp(args[0],args);
@@ -99,10 +96,8 @@ void executePipeCommands(vector<string> cmd)
 	pid = fork();
 	if(pid == 0)
 	{
-		//close(fd[1]);		
+	
 		dup2(fd[0],STDIN_FILENO);
-		//dup2(1,1);
-
 		close(fd[0]);
 		close(fd[1]);
 		execvp(args1[0],args1);
@@ -111,13 +106,13 @@ void executePipeCommands(vector<string> cmd)
 	close(fd[0]);
 	close(fd[1]);
 	while(wait(NULL)>0);
-
 }
 
 
 
 int main()
 {
+	
 	string input;	
 	int file_des;
 	printWecomeMessage();
@@ -147,7 +142,7 @@ int main()
 
 
 	
-
+	cout<<"amogh rocks"<<endl;
 	while(1)
 	{
 		vector<string> args_vector;
