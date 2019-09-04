@@ -1,4 +1,3 @@
 #!/bin/bash
-
-echo "x = "
-echo -n $x
+echo "x is "
+echo $x

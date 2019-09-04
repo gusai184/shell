@@ -1,5 +1,6 @@
 #include "header.h"
-
+extern unordered_map<string,string> varmap;
+extern int last_cmd_status;
 void printWecomeMessage()
 {
 	cout<<"\n******************************************"; 
@@ -11,13 +12,7 @@ void printWecomeMessage()
 
 void printPrompt()
 {
-	char hostnamebuffer[256];
-	
-	string username = string(getenv("USER"));
-	string hostname = string(getenv("HOSTNAME"));
-	string cwd = string(get_current_dir_name());
-
-	cout<<username<<"@"<<hostname<<":"<<cwd<<"$";
+	cout<<varmap["PS1"];
 }
 
 void getArguments(string str,vector<string> &args) 
@@ -51,15 +46,12 @@ int getArgumentsArray(vector<string> args_vector,char  *args[])
 		string s = args_vector[i];
 		if(s[0]=='$')
 		{
-			char * val = getenv(s.substr(1).c_str());
-			if(val==NULL)
-			{
-				return -1;
-			}
-			strcpy(args[i],val);			
+			string str = checkForVar(s);
+			strcpy(args[i],str.c_str());			
 		}
 		else if(s == "~")
 		{
+	
 			strcpy(args[i],getenv("HOME"));
 		}
 		else
@@ -69,4 +61,78 @@ int getArgumentsArray(vector<string> args_vector,char  *args[])
 	}
 	args[vect_size] = NULL;
 	return 1;
+}
+
+
+bool isAssignmentCommand(string s)
+{
+	int fg=0;
+	for(auto x : s)
+	{
+		if(x==' ')
+			return false;
+		if(x=='=')
+			fg=1;
+	}
+	return fg==1;
+}
+
+string checkForVar(string s)
+{
+	
+	
+
+	if(s=="$")
+		return s;
+	
+	if(s=="~")
+	{
+		return string(getenv("HOME"));
+	}
+
+	if(s=="$$")
+	{
+		int id = getpid();
+		return to_string(id);
+	}
+
+	if(s=="$?")
+	{	
+		return to_string(last_cmd_status);
+	}
+
+	if(s[0]!='$')
+		return s;
+
+	string s1 = s.substr(1);
+	char *envar = getenv(s1.c_str());
+	if(envar != NULL)
+		return string(envar);
+	if(varmap.find(s1)!=varmap.end())
+		return varmap[s1];
+	return s;
+}
+
+bool executeAssignmentCommand(string s)
+{
+	 for(auto x : s)
+	{
+		if(x==' ')
+		{
+			cout<<"Invalid = command"<<endl;
+			return false;
+		}
+	}
+	int index = s.find("=");
+	string name = s.substr(0,index);
+	string value = s.substr(index+1);
+	cout<<"name : "<<name<<endl;
+	cout<<"value : "<<checkForVar(value)<<endl;
+	//enviornment var exist
+	if(getenv(name.c_str()) != NULL)
+		setenv(name.c_str(),checkForVar(value).c_str(),1);
+	else
+		varmap[name] = checkForVar(value);
+	return true;
+
 }

@@ -1,15 +1,11 @@
 #include "header.h"
 extern char **environ;
-
-
-int main()
+extern int errno;
+int last_cmd_status;
+unordered_map<string,string> varmap;
+char *env[5];
+void initShell()
 {
-	
-	string input;	
-	int file_des;
-	unordered_map<string,string> varmap;
-
-
 
 	printWecomeMessage();
 	
@@ -32,14 +28,40 @@ int main()
 	char home[256] = {"HOME="};
 	strcat(home,pw_entry_ptr->pw_dir);
 	
-	char  *env[5] = {user,home,hostnamebuffer,"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",(char *)NULL};
+
+	env[0] = (char *)malloc(sizeof(user));
+	env[1] = (char *)malloc(sizeof(home));
+	env[2] = (char *)malloc(sizeof(hostnamebuffer));
+	env[3] = (char *)malloc(sizeof("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"));
+	
+	strcpy(env[0],user);
+	strcpy(env[1],home);
+	strcpy(env[2],hostnamebuffer);
+	strcpy(env[3],"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin");
+	//char  *env[5] = {user,home,hostnamebuffer,"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",(char *)NULL};
+
 	environ = env;
 
+	string ps1 = string(getenv("USER"))+"@"+string(getenv("HOSTNAME"))+"$ ";
+	varmap["PS1"] = ps1;
 
+	return;
 
+}
+
+int main()
+{
 	
+	string input;	
+	int file_des;
+	
+
+	initShell();
+	
+	cout<<"dhamo sometimes rocks"<<endl;
 	while(1)
 	{
+	
 		vector<string> args_vector;
 		printPrompt();
 		getline(cin,input);
@@ -53,6 +75,15 @@ int main()
 
 		
 		
+
+		if(isAssignmentCommand(input))
+		{
+			executeAssignmentCommand(input);
+			continue;
+		}
+
+
+
 		if(pipecommand(args_vector))
 		{			
 			executePipeCommands(args_vector);
@@ -63,12 +94,13 @@ int main()
 		
 		if(getArgumentsArray(args_vector,args)==-1)
 			continue;
-
-		
+	
 		int child = fork();
 		
 		if(child==0)
 		{
+			
+			if(strcmp(args[0],"cd")==0)
 			{	
 				int fg = chdir(args[1]);
 				if(fg==-1)
@@ -107,14 +139,25 @@ int main()
 					args[3] = (char *)NULL;
 					execvp(args[0],args);
 				}
+				
 				if(execvp(args[0], args)==-1)
-					cout<<"Error in command";
+				{
+
+					cout<<"Error in command with error "<<errno;
+				}
+				exit(errno);
 			}
 		}
 		else
 		{
-			cout<<"again parent";
-			wait(NULL);
+			int status;
+			wait(&status);
+			
+			if(WIFEXITED(status))
+			{
+				cout<<"childeren exited with "<<WEXITSTATUS(status)<<endl;
+				last_cmd_status = WEXITSTATUS(status);
+			}
 			close(file_des);
 		}
 
