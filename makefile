@@ -1,12 +1,17 @@
 all:shell
 
 
-shell: mainfile1.o functions.o
-	g++ mainfile1.o functions.o  -o shell
+shell: main.o functions.o pipecmd.o
+	g++ main.o functions.o pipecmd.o -o shell
 
-mainfile1.o: mainfile1.cpp 
-	g++ -c mainfile1.cpp 
+main.o: main.cpp 
+	g++ -c main.cpp 
 
 functions.o: functions.cpp
 	g++ -c functions.cpp
 
+pipecmd.o: pipecmd.cpp
+	g++ -c pipecmd.cpp
+
+rm:
+	rm  main.o functions.o pipecmd.o 
