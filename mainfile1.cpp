@@ -67,42 +67,39 @@ void executePipeCommands(vector<string> cmd)
 	{
 		cout<<x<<":"<<endl;
 	}
-	
 
-	char *args[128];
-	getArgsFromString(vectcmd[0],args);
-	int fd[2];
-	
+	int fd[2];	
 	if(pipe(fd)<0)
 	{
 		cout<<"error in pipe";
 		return;
 	}
 
-	int pid = fork();
-
-	if(pid==0)
+	f(i,0,vectcmd.size()-1)
 	{
+		char *args[128];
+		getArgsFromString(vectcmd[i],args);
 	
-		dup2(fd[1],STDOUT_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		execvp(args[0],args);
-	}
+		int pid = fork();
 
-	char *args1[128];
-	getArgsFromString(vectcmd[1],args1);
-	
-	pid = fork();
-	if(pid == 0)
-	{
-	
-		dup2(fd[0],STDIN_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		execvp(args1[0],args1);
+		if(pid==0)
+		{
+			if(i!=0)
+				dup2(fd[0],0);
+			if(i!=(vectcmd.size()-1))
+				dup2(fd[1],1);
+			close(fd[0]);
+			close(fd[1]);			
+			///write(1,"command ",strlen("command"));
+			//write(1,vectcmd[i].c_str(),vectcmd[i].size());
+			execvp(args[0],args);
+		}
+	/*	else{
+			close(fd[0]);
+			close(fd[1]);
+			wait(NULL);		
+		}*/
 	}
-
 	close(fd[0]);
 	close(fd[1]);
 	while(wait(NULL)>0);
@@ -142,7 +139,7 @@ int main()
 
 
 	
-	cout<<"amogh rocks"<<endl;
+	cout<<"dhamo always rocks"<<endl;
 	while(1)
 	{
 		vector<string> args_vector;
