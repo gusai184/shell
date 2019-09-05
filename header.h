@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <unordered_map>
 
 #include <sys/wait.h>
 #include <unistd.h>
@@ -29,6 +30,8 @@ void separatePipe(vector<string> source,vector<string> &desti);
 
 void getArgsFromString(string s, char *args[]);
 
+
+
 void executePipeCommands(vector<string> cmd);	
 
 //assingment = commmands
@@ -44,5 +47,21 @@ void initShell();
 
 void readShellRC();
 
+//export.cpp
+bool isExportCommand(string input);
+
+void executeExportCommand(string input);
+
+void executeShellCommand(string input);
 
 
+
+//alias
+bool isAliasCommand(string s);
+
+void executeAliasCommand(string input);
+
+void printAlias();
+
+
+string  aliasFilter(string s);

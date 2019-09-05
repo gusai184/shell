@@ -1,4 +1,5 @@
 #include "header.h"
+extern unordered_map<string,string> aliasmap;
 extern map<string,string> varmap;
 extern int last_cmd_status;
 void printWecomeMessage()
@@ -50,6 +51,7 @@ int getArgumentsArray(vector<string> args_vector,char  *args[])
 	
 			strcpy(args[i],getenv("HOME"));
 		}
+
 		else
 		{
 			strcpy(args[i],args_vector[i].c_str());			
@@ -76,7 +78,6 @@ bool isAssignmentCommand(string s)
 string checkForVar(string s)
 {	
 	
-
 	if(s=="$")
 		return s;
 	

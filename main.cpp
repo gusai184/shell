@@ -1,17 +1,17 @@
 #include "header.h"
 extern char **environ;
 extern int errno;
-int last_cmd_status;
+map<string,string> expmap;
 map<string,string> varmap;
 char *env[5];
-
-
+int last_cmd_status;
+unordered_map<string,string> aliasmap;
 
 
 void initShell()
 {
 
-	printWecomeMessage();
+	
 	
 	if(clearenv()!=0)
 		perror("clearenv() Error");
@@ -46,7 +46,12 @@ void initShell()
 
 	environ = env;
 
-	string ps1 = string(getenv("USER"))+"@"+string(getenv("HOSTNAME"))+"$ ";
+	string ps1 = string(getenv("USER"))+"@"+string(getenv("HOSTNAME"));
+	if(getuid()==0)
+		ps1 += "# ";
+	else
+		ps1 += "$ ";
+
 	varmap["PS1"] = ps1;
 
 	return;
@@ -71,17 +76,22 @@ void readShellRC()
     cout<<"These are variable from shellrc fille : "<<endl;	
     while ((read = getline(&line, &len, fp)) != -1) {
       //  printf("Retrieved line of length %zu:\n", read);
-        //printf("%s", line);
+       // printf("%s", line);
 
         if(line[read-1]=='\n')
         	line[read-1]=(char)NULL;
-        if(isAssignmentCommand(line))
+
+        if(isAliasCommand(line))
+		{
+			//cout<<"here"<<endl;
+			executeAliasCommand(line);
+			//cout<<"needs to be handled soon";
+		}
+        else if(isAssignmentCommand(line))
 		{
 			executeAssignmentCommand(line);
 		}
-		else{
-			//cout<<"needs to be handled soon";
-		}
+		
     }
 
     fclose(fp);
@@ -92,22 +102,25 @@ void readShellRC()
 
 int main()
 {
-	
+
 	string input;	
 	int file_des;
 	
-
+	cout<<"shellrc file reading ...."<<endl;
 	initShell();
 	readShellRC();
-	
-	cout<<"dhamo sometimes rocks"<<endl;
+	cout<<"shellrc file configured"<<endl;
+	printWecomeMessage();
+
 	while(1)
 	{
-	
+
 		vector<string> args_vector;
 		
 		cout<<varmap["PS1"];
 		getline(cin,input);
+
+		input = aliasFilter(input);
 
 		if(input.length()==0)
 			continue;
@@ -117,24 +130,41 @@ int main()
 		char  *args[vect_size+1];
 
 		
-		
-
 		if(isAssignmentCommand(input))
 		{
 			executeAssignmentCommand(input);
 			continue;
 		}
 
-
-
 		if(pipecommand(args_vector))
 		{			
 			executePipeCommands(args_vector);
 			continue;
-		}		
-	
+		}
+
+		if(isAliasCommand(input))			
+		{
+			executeAliasCommand(input);
+			continue;
+		}
+		/*
+		if(isExportCommand(input))
+		{
+			cout<<"inside export "<<endl;
+			executeExportCommand(input);
+
+			continue;
+		}
+		//not working 
+		if(input=="./shell")
+		{
+			cout<<"in functions"<<endl;
+			executeShellCommand(input);
+			continue;
+		}*/
 		
-		
+
+
 		if(getArgumentsArray(args_vector,args)==-1)
 			continue;
 	
@@ -151,8 +181,7 @@ int main()
 				last_cmd_status = errno;
 			}
 			else		
-			{
-				
+			{				
 
 				if(vect_size > 2  && (strcmp(args[2],">")==0 || strcmp(args[2],">>") == 0))
 				{
@@ -194,6 +223,7 @@ int main()
 		}
 		else
 		{
+			//Parent process
 			int status;
 			wait(&status);
 			
