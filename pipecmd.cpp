@@ -75,7 +75,7 @@ void executePipeCommands(vector<string> cmd)
 		cout<<"error in pipe";
 		return;
 	}
-
+	cout<<"vec : "<<vectcmd.size();
 	f(i,0,vectcmd.size()-1)
 	{
 		char *args[128];
@@ -87,18 +87,23 @@ void executePipeCommands(vector<string> cmd)
 		{
 			if(i!=0)
 				dup2(fd[0],0);
+			close(fd[0]);
+
 			if(i!=(vectcmd.size()-1))
 				dup2(fd[1],1);
-			close(fd[0]);
-			close(fd[1]);			
+
+			
+			//if(i==vectcmd.size()-1)
+			//	close(fd[1]);			
 			///write(1,"command ",strlen("command"));
 			//write(1,vectcmd[i].c_str(),vectcmd[i].size());
 			execvp(args[0],args);
+
 		}
 		else{
 			//close(fd[0]);
-			//close(fd[1]);
-			//wait(NULL);		
+			close(fd[1]);
+			wait(NULL);		
 		}
 	}
 

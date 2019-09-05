@@ -1,7 +1,7 @@
 #include <string.h>
 #include <iostream>
 #include <vector>
-#include <unordered_map>
+#include <map>
 
 #include <sys/wait.h>
 #include <unistd.h>
@@ -17,8 +17,6 @@
 using namespace std;
 
 void printWecomeMessage();
-
-void printPrompt();
 
 void getArguments(string str,vector<string> &args);
 
@@ -40,6 +38,11 @@ bool executeAssignmentCommand(string s);
 
 string checkForVar(string s);
 
+
+//inintshell.cpp
+void initShell();
+
+void readShellRC();
 
 
 

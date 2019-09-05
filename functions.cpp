@@ -1,5 +1,5 @@
 #include "header.h"
-extern unordered_map<string,string> varmap;
+extern map<string,string> varmap;
 extern int last_cmd_status;
 void printWecomeMessage()
 {
@@ -10,10 +10,6 @@ void printWecomeMessage()
         "***********************\n\n";    
 }
 
-void printPrompt()
-{
-	cout<<varmap["PS1"];
-}
 
 void getArguments(string str,vector<string> &args) 
 { 
@@ -78,8 +74,7 @@ bool isAssignmentCommand(string s)
 }
 
 string checkForVar(string s)
-{
-	
+{	
 	
 
 	if(s=="$")
@@ -126,8 +121,7 @@ bool executeAssignmentCommand(string s)
 	int index = s.find("=");
 	string name = s.substr(0,index);
 	string value = s.substr(index+1);
-	cout<<"name : "<<name<<endl;
-	cout<<"value : "<<checkForVar(value)<<endl;
+	cout<<"variable : "<<name<<"="<<checkForVar(value)<<endl;
 	//enviornment var exist
 	if(getenv(name.c_str()) != NULL)
 		setenv(name.c_str(),checkForVar(value).c_str(),1);
