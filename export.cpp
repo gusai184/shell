@@ -14,14 +14,16 @@ bool isExportCommand(string input)
 void executeExportCommand(string input)
 {
 	string variable = input.substr(7);
+	//cout<<variable<<"is var"<<endl;
 	if(varmap.find(variable)!=varmap.end())
 	{
-		expmap.insert({variable,varmap[variable]});
-		cout<<"inserted ";
+		//expmap.insert({variable,varmap[variable]});
+		expmap[variable] = varmap[variable];
+		cout<<"exported to all childs "<<endl;
 	}
 	else
 	{
-		cout<<"var not found";
+		cout<<"var not found"<<endl;
 	}
 }
 
@@ -31,7 +33,7 @@ void executeShellCommand(string input)
 	char *args[2];
 	if(child==0)
 	{
-		for(auto i : varmap)
+		/*for(auto i : varmap)
 		{
 			cout<<i.first<<" : "<<i.second<<endl;
 		}
@@ -42,14 +44,14 @@ void executeShellCommand(string input)
 				cout<<i.first<<" : "<<i.second<<endl;
 			}
 		//varmap = expmap;
-			cout<<endl;
-		varmap.clear();
-		varmap = expmap;
-		expmap.clear();
-		
+			cout<<endl;*/
+		//varmap.clear();
+		//varmap = expmap;
+		//expmap.clear();
+			
 
 		getArgsFromString(input,args);
-		if(fork()==0)
+		//if(fork()==0)
 		  execvp(args[0],args);
 	}
 }

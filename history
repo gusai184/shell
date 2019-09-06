@@ -1,0 +1,395 @@
+echo hi
+ls | wc
+ps
+ps
+echo dhamo
+echo $y
+echo $xxx
+v1=1
+v2=2
+v3=3
+export v2
+echo $y
+echo $xxx
+v1=1
+v2=2
+v3=3
+export v2
+./shell
+xxx=90
+echo $xxx
+./shell
+echo $v1
+echo $v2
+echo $v3
+b=1
+c=2
+./shell
+echo $b
+b=1
+c=2
+./shell
+echo $c
+echo $bb
+aa=1
+bb=2
+./shell
+echo $aa
+x=1
+y=2
+z=3
+./shell
+echo $a
+clear
+echo $b $c
+echo hi
+a=1
+b=2
+c=3
+./shell
+echo $a
+echo $c
+echo $b
+echo $b
+a=1
+b=2
+./shell
+echo $a
+a=1
+b=3
+c=4
+./shell
+echo $a $b $c
+alarm 2
+
+alarm 5
+alarm 10
+alarm 2
+
+alarm 10
+alarm 2
+
+alarm 5
+alarm 1
+
+xdg-open /https:www.google.com
+https://www.geeksforgeeks.org/xdg-open-command-in-linux-with-examples/[B[A[A[A[
+xdg-open /https:www.google.com
+https://www.geeksforgeeks.org/xdg-open-command-in-linux-with-examples/[B[A[A[A[
+xdg-open https://www.geeksforgeeks.org/xdg-open-command-in-linux-with-examples/
+ls
+xdg-open main.cpp
+xdg-open history
+xdg-open 'http://www.freedesktop.org/'
+exit
+xdg-open 'http://www.freedesktop.org/'
+exit
+ls
+touch file.txt
+gedit file.txt
+vlc
+open
+vlc
+gedit
+exit
+vlc
+gedit
+exit
+clear
+gedit
+vlc
+subl
+which subl
+/usr/bin/subl
+gedit
+gedit
+subl
+vlc
+gedit
+vlc
+gedit
+vlc
+gedit
+chrome
+gedit
+chrome
+subl
+gedit
+$PATH
+$PATH
+echo $PATH
+echo $PATH
+printenv
+PS1=;;
+
+
+echo $PATH
+vlc
+echo $PATH
+vlc
+x=1
+./shell
+echo $x
+echo $x
+echo $zz
+echo $ss
+exit
+echo $x
+echo $zz
+echo $ss
+exit
+exit
+echo $x
+echo $y
+zz=123
+ss=0
+./shell
+x=1
+y=1
+echo $x
+./shell
+echo $x
+echo $zz
+echo $ss
+exit
+exit
+echo $a $b
+exit
+a=1
+b=2
+./shell
+exit
+x=1
+export x
+./shell
+x=1
+y=1
+export x
+./shell
+x=1
+echo $x
+export x
+x=1
+export x
+x=1
+y=2
+export x
+./shell
+echo $map
+printenv
+echo $varmap
+./shell
+x=1
+y=2
+export x
+./shell
+a=1
+b=2
+export a
+export b
+./shell
+x=1
+y=2
+z=$HOME
+export y
+export z
+./shell
+x=1
+y=2
+c=$USER
+export c
+export y
+./shell
+echo $c
+echo $y
+echo $z
+echo $x
+./shell
+x=1
+y=2
+z=3
+export y
+export z
+./shell
+echo $a
+echo $n
+echo $y
+echo $z
+exit
+echo $a
+echo $x $y $z
+n=3
+export n
+./shell
+echo $n
+exit 
+echo $a
+echo $x $y $z
+n=3
+export n
+./shell
+echo $n
+exit 
+echo $n
+exit
+x=1
+y=2
+z=3
+./shell
+echo $x
+echo $y $z
+a=1
+b=2
+export a
+./shell
+echo $x $s1x
+s2=3
+exit
+x=1
+s1x=1
+s1y=2
+export sh1x
+./shell
+echo $s2
+echo $x
+y=1
+export y
+z=1
+exit
+x=1
+export x
+./shell
+echo $z
+echo $y
+echo $x
+echo $y
+z=3
+exit
+x=1
+y=1
+export x
+./shell
+echo $z
+z=1
+export z
+exit
+x=1
+y=1
+export y
+./shell
+echo $z
+echo $x
+echo $x $y $z
+exit
+x=1
+y=2
+z=3
+./shell
+export x
+export z
+./shell
+echo $x $y $z
+./shell
+echo $x $y $z
+echo $x $y $z $w
+y = 3
+echo $x $y $z $w
+z=5
+echo $z
+exit
+echo $z
+exit
+echo $x $y $z $w
+y = 3
+y=3
+export y
+./shell
+echo $z
+./shell
+exit
+x=1
+y=2
+z=3
+export x
+w=4
+export w
+./shell
+echo $y
+echo $z
+echo $x $y $z
+m=5
+n=6
+z=18
+echo $z
+export n 
+export n
+export z
+./shell
+x=1
+y=2
+z=3
+export y
+export z
+./shell
+echo $x $y $z $m $n
+x=2
+export x
+./shell
+x=1
+export x
+./shell
+./shell
+x=1
+export x
+./shell
+x=1
+export x
+./shell
+x=2
+export x
+./shell
+x=5
+export x
+echo $x
+./shell
+x=1
+export x
+./shell
+echo $x
+x=1
+export x
+./shell
+x=23
+export x
+echo $x
+./shell
+x=1
+x=2
+echo $x
+echo $x
+x=12
+export x
+./shell
+x=1
+echo $x
+export x
+./shell
+exit
+x=3
+export x
+./shell
+echo $x
+exit
+x=1
+echo $x
+export x
+./shell
+echo #x
+echo $x
+echo $a
+x=5
+y=5
+z=$HOME
+./shell
+echo $x
+echo $y

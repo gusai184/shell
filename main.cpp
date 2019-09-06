@@ -6,13 +6,51 @@ map<string,string> varmap;
 char *env[5];
 int last_cmd_status;
 unordered_map<string,string> aliasmap;
+FILE * hist_file;
 
+string getmap(map<string,string> expmap)
+{
+	string s="";
+	for(auto x : expmap)
+	{
+		s = s + x.first +"="+x.second+":";
+	}
+	cout<<"inside getmap"<<s<<endl;
+	return s;
+}
+
+void  ALARMhandler(int sig)
+{
+  signal(SIGALRM, SIG_IGN);          /* ignore this signal       */
+  printf("Hello\n");
+  signal(SIGALRM, ALARMhandler);     /* reinstall the handler    */
+}
 
 void initShell()
 {
+	hist_file = fopen("history","a");
 
+	if(getenv("varmap")!=NULL)
+	{
+		cout<<"got somethin "<<endl;
+		//cout<<getenv("varmap");
+		char * s=getenv("varmap");
+		char *token = strtok(s, ":"); 
+	    while (token != NULL) 
+	    { 
+	        //printf("%s\n", token); 
+	        string tk = string(token);
+	        int index = tk.find("=");
+	        string ls = tk.substr(0,index);
+	        string rs = tk.substr(index+1);
+	        cout<<"ls "<<ls<<" : "<<"rs "<<rs<<endl;
+	        expmap[ls] = rs;
+	        token = strtok(NULL, ":"); 
+	    }
+	    varmap =expmap; 
+	}
 	
-	
+
 	if(clearenv()!=0)
 		perror("clearenv() Error");
 
@@ -100,12 +138,25 @@ void readShellRC()
    return;
 }
 
+void sigintHandler(int sig_num) 
+{ 
+  
+    signal(SIGINT, sigintHandler); 
+    fflush(stdout); 
+    fclose(hist_file);
+    exit(0);
+} 
+
 int main()
 {
 
+	signal(SIGINT, sigintHandler); 
+	signal(SIGALRM, ALARMhandler);
+
+  
 	string input;	
 	int file_des;
-	
+	cout<<endl<<"--------------------------------------"<<endl;
 	cout<<"shellrc file reading ...."<<endl;
 	initShell();
 	readShellRC();
@@ -119,7 +170,9 @@ int main()
 		
 		cout<<varmap["PS1"];
 		getline(cin,input);
-
+		int i = fprintf(hist_file,"%s\n",input.c_str());
+		
+		
 		input = aliasFilter(input);
 
 		if(input.length()==0)
@@ -147,7 +200,7 @@ int main()
 			executeAliasCommand(input);
 			continue;
 		}
-		/*
+		
 		if(isExportCommand(input))
 		{
 			cout<<"inside export "<<endl;
@@ -155,15 +208,24 @@ int main()
 
 			continue;
 		}
-		//not working 
-		if(input=="./shell")
-		{
-			cout<<"in functions"<<endl;
-			executeShellCommand(input);
-			continue;
-		}*/
-		
 
+		if(args_vector[0]=="alarm")
+		{
+			alarm(stoi(args_vector[1]));
+			continue;
+		}
+		//not working 
+// //		if(input=="./shell")
+// 		{
+// 			cout<<"in functions"<<endl;
+// 			executeShellCommand(input);
+// 			continue;
+// 		}
+		
+		if(input=="exit")
+		{
+			exit(0);
+		}
 
 		if(getArgumentsArray(args_vector,args)==-1)
 			continue;
@@ -212,7 +274,12 @@ int main()
 					args[3] = (char *)NULL;
 					execvp(args[0],args);
 				}
-				
+				if(input=="./shell")
+				{
+					cout<<"before execution "<<endl;
+					setenv("varmap",getmap(expmap).c_str(),1);
+					//getmap(expmap);
+				}
 				if(execvp(args[0], args)==-1)
 				{
 

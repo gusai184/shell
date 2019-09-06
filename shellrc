@@ -1,6 +1,0 @@
-alias printhome='echo $HOME'
-alias x='ls -l'
-y=dhmo
-alias z='echo $y'
-zz=25
-HOME=EIIT

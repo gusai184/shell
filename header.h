@@ -12,6 +12,9 @@
 
 #include <errno.h>
 
+
+#include <signal.h> 
+
 #define f(i,a,b) for(int i=(int)a;i<=(int)b;i++)
 
 
@@ -65,3 +68,5 @@ void printAlias();
 
 
 string  aliasFilter(string s);
+
+//singnal

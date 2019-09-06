@@ -1,7 +1,9 @@
 #include "header.h"
 extern unordered_map<string,string> aliasmap;
 extern map<string,string> varmap;
+extern map<string,string> expmap;
 extern int last_cmd_status;
+
 void printWecomeMessage()
 {
 	cout<<"\n******************************************"; 
@@ -128,6 +130,9 @@ bool executeAssignmentCommand(string s)
 		setenv(name.c_str(),checkForVar(value).c_str(),1);
 	else
 		varmap[name] = checkForVar(value);
+	
+	
+	
 	return true;
 
 }
