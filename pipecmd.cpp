@@ -59,6 +59,9 @@ void getArgsFromString(string s, char *args[])
    args[i] = NULL;
 }
 
+
+
+
 void executePipeCommands(vector<string> cmd)
 {
 	
@@ -70,45 +73,50 @@ void executePipeCommands(vector<string> cmd)
 	}
 
 	int fd[2];	
-	if(pipe(fd)<0)
+		int fdd = 0;
+
+	/*if(pipe(fd)<0)
 	{
 		cout<<"error in pipe";
 		return;
-	}
+	}*/
 	cout<<"vec : "<<vectcmd.size();
 	f(i,0,vectcmd.size()-1)
 	{
+		if(pipe(fd)<0)
+		{
+			cout<<"error in pipe";
+			return;
+		}
+		
 		char *args[128];
 		getArgsFromString(vectcmd[i],args);
 	
 		int pid = fork();
-
 		if(pid==0)
 		{
 			if(i!=0)
-				dup2(fd[0],0);
-			close(fd[0]);
+				dup2(fdd,0);
+			
+			
 
 			if(i!=(vectcmd.size()-1))
 				dup2(fd[1],1);
-
 			
-			//if(i==vectcmd.size()-1)
-			//	close(fd[1]);			
-			///write(1,"command ",strlen("command"));
-			//write(1,vectcmd[i].c_str(),vectcmd[i].size());
+			close(fd[0]);
 			execvp(args[0],args);
-
 		}
 		else{
+			wait(NULL);		
 			//close(fd[0]);
 			close(fd[1]);
-			wait(NULL);		
+			fdd = fd[0];
+			
 		}
 	}
 
-	close(fd[0]);
-	close(fd[1]);
-	while(wait(NULL)>0);
+	// close(fd[0]);
+	// close(fd[1]);
+	// while(wait(NULL)>0);
 }
 
