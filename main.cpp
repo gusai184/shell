@@ -32,7 +32,7 @@ void initShell()
 
 	if(getenv("varmap")!=NULL)
 	{
-		cout<<"got somethin "<<endl;
+		cout<<"Exported variables from Parent "<<endl;
 		//cout<<getenv("varmap");
 		char * s=getenv("varmap");
 		char *token = strtok(s, ":"); 
@@ -43,7 +43,7 @@ void initShell()
 	        int index = tk.find("=");
 	        string ls = tk.substr(0,index);
 	        string rs = tk.substr(index+1);
-	        cout<<"ls "<<ls<<" : "<<"rs "<<rs<<endl;
+	        cout<<ls<<"="<<rs<<endl;
 	        expmap[ls] = rs;
 	        token = strtok(NULL, ":"); 
 	    }
@@ -165,6 +165,7 @@ int main()
 
 	while(1)
 	{
+		try{
 
 		vector<string> args_vector;
 		
@@ -203,7 +204,6 @@ int main()
 		
 		if(isExportCommand(input))
 		{
-			cout<<"inside export "<<endl;
 			executeExportCommand(input);
 
 			continue;
@@ -276,7 +276,7 @@ int main()
 				}
 				if(input=="./shell")
 				{
-					cout<<"before execution "<<endl;
+					//cout<<"before execution "<<endl;
 					setenv("varmap",getmap(expmap).c_str(),1);
 					//getmap(expmap);
 				}
@@ -301,8 +301,11 @@ int main()
 			}
 			close(file_des);
 		}
-
-		//cout<<endl;
+	}catch(...)
+	{
+		cout<<"Some error occured or invalid command";
+	}
+				//cout<<endl;
 
 	}
 

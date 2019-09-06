@@ -108,7 +108,7 @@ string checkForVar(string s)
 		return string(envar);
 	if(varmap.find(s1)!=varmap.end())
 		return varmap[s1];
-	return s;
+	return "";
 }
 
 bool executeAssignmentCommand(string s)

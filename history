@@ -393,3 +393,115 @@ z=$HOME
 ./shell
 echo $x
 echo $y
+x=$HOME
+echo $dfkd
+echo $$
+echo $$$
+echo $?
+x=1
+y=2
+z=3
+./shell
+x=1
+y=2
+export
+make 
+echo $x $y $z
+exit
+echo $x
+exit
+echo $x
+exit
+x=1
+y=2
+z=3
+./shell
+echo $x $y $z
+export x
+./shell
+echo $x
+x=4
+echo $x
+./shell
+export x
+./shell
+y=22
+z=33
+echo $y $z
+id
+echo $x $z
+echo $m $n
+exit
+m=1
+n=2
+export x
+export y
+./shell
+x=1
+y=2
+z=3
+export x
+./shell
+echo $m $n $x $y
+echo $HOME $PATH
+echo $x
+echo $m $n $y
+z=8
+p=5
+export z
+./shell
+echo $x
+echo $z
+echo $p
+echo $x
+echo $y
+z=3
+exit
+x=1
+y=2
+export x
+./shell
+echo $z
+echo $z
+echo $x
+export z
+clear
+exit
+echo $n $o $y
+echo $m
+echo $x $z 
+exit
+echo $m
+echo $n
+echo $o
+echo $x
+echo $y
+n=44
+export n
+z=4
+./shell
+echo $n $o $y
+echo $z
+echo $m
+exit
+echo $y $x $z
+m=1
+n=2
+export n
+o=3
+export o
+./shell
+echo $m $n $o
+exit
+echo $y
+echo $z $x
+echo $m $n $o
+exit
+x=1
+y=2
+z=3
+export y
+./shell
+echo $x $y $z
+echo $m $n $o
+./shell
