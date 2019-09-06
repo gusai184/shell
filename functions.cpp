@@ -1,9 +1,9 @@
 #include "header.h"
-extern unordered_map<string,string> aliasmap;
+extern unordered_map<string,string> appmap;
 extern map<string,string> varmap;
 extern map<string,string> expmap;
 extern int last_cmd_status;
-
+extern unordered_map<string,string> aliasmap;
 void printWecomeMessage()
 {
 	cout<<"\n******************************************"; 
@@ -135,4 +135,27 @@ bool executeAssignmentCommand(string s)
 	
 	return true;
 
+}
+
+
+void executeOpenCommand(vector<string> args_vector)
+{
+	cout<<"here";
+	char *args[3];
+	args[0] = new char[256];
+	args[1] = new char[256];
+	args[2] = new char[256];
+	string file = args_vector[1];
+	string ext = file.substr(file.find("."));
+	string path = appmap[ext];
+	cout<<"Ext "<<ext<<endl;
+	cout<<"Path "<<path<<endl;
+	strcpy(args[0],path.c_str());
+	strcpy(args[1],file.c_str());
+	args[2]=NULL;
+	int child = fork();
+	if(child==0)
+	{
+		execvp(args[0],args);
+	}
 }

@@ -55,7 +55,7 @@ bool isExportCommand(string input);
 
 void executeExportCommand(string input);
 
-void executeShellCommand(string input);
+
 
 
 
@@ -70,3 +70,6 @@ void printAlias();
 string  aliasFilter(string s);
 
 //singnal
+
+
+void executeOpenCommand(vector<string> input);

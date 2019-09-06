@@ -1,0 +1,6 @@
+#[vlc,/usr/bin/vlc,.mp4]
+#[subl,/usr/bin/subl,.txt]
+#[evince,/usr/bin/evince,.pdf]
+#[eog,/usr/bin/eog,.png]
+#[eog,/usr/bin/eog,.jpg]
+#[eog,/usr/bin/eog,.JPG]

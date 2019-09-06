@@ -3,9 +3,11 @@ extern char **environ;
 extern int errno;
 map<string,string> expmap;
 map<string,string> varmap;
-char *env[5];
+
+char *env[6];
 int last_cmd_status;
 unordered_map<string,string> aliasmap;
+unordered_map<string,string> appmap;
 FILE * hist_file;
 
 string getmap(map<string,string> expmap)
@@ -15,7 +17,7 @@ string getmap(map<string,string> expmap)
 	{
 		s = s + x.first +"="+x.second+":";
 	}
-	cout<<"inside getmap"<<s<<endl;
+	//cout<<"inside getmap"<<s<<endl;
 	return s;
 }
 
@@ -51,8 +53,8 @@ void initShell()
 	}
 	
 
-	if(clearenv()!=0)
-		perror("clearenv() Error");
+//	if(clearenv()!=0)
+//		perror("clearenv() Error");
 
 	struct passwd pw_entry;
 	struct  passwd * pw_entry_ptr;
@@ -75,15 +77,22 @@ void initShell()
 	env[1] = (char *)malloc(sizeof(home));
 	env[2] = (char *)malloc(sizeof(hostnamebuffer));
 	env[3] = (char *)malloc(sizeof("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"));
+	env[4] = (char *)malloc(sizeof("TERM=xterm-256color"));
+
 	
 	strcpy(env[0],user);
 	strcpy(env[1],home);
 	strcpy(env[2],hostnamebuffer);
 	strcpy(env[3],"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin");
+	strcpy(env[4],"TERM=xterm-256color");
+
 	//char  *env[5] = {user,home,hostnamebuffer,"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",(char *)NULL};
 
 	environ = env;
-
+	setenv("DISPLAY",":0",1);
+	setenv("DBUS_SESSION_BUS_ADDRESS","unix:path=/run/user/1000/bus",1);
+	setenv("XDG_RUNTIME_DIR","/run/user/1000",1);
+	
 	string ps1 = string(getenv("USER"))+"@"+string(getenv("HOSTNAME"));
 	if(getuid()==0)
 		ps1 += "# ";
@@ -117,8 +126,31 @@ void readShellRC()
        // printf("%s", line);
 
         if(line[read-1]=='\n')
-        	line[read-1]=(char)NULL;
-
+ 	       	line[read-1]=(char)NULL;
+ 	    if(line[0]=='#')   	
+ 	    {
+ 	    	line[read-2]=(char)NULL;
+ 	    	char *token = strtok(&line[2], ",");
+ 	    	int no=1; 
+ 	        string ls,rs;
+		    while (token != NULL) 
+		    { 
+		        //printf("%s\n", token); 
+		        
+		        if(no==2)
+		        {
+		        	ls=string(token);
+		        }
+		        else
+		        {
+		        	rs=string(token);
+		        }
+		        token = strtok(NULL, ","); 
+		        no++;
+		    } 
+		    appmap[rs] = ls;
+		    cout<<ls<<":"<<rs<<endl;
+ 	    }
         if(isAliasCommand(line))
 		{
 			//cout<<"here"<<endl;
@@ -204,11 +236,15 @@ int main()
 		
 		if(isExportCommand(input))
 		{
+			
 			executeExportCommand(input);
-
 			continue;
 		}
 
+		if(args_vector[0]=="open")
+		{
+			executeOpenCommand(args_vector);
+		}
 		if(args_vector[0]=="alarm")
 		{
 			alarm(stoi(args_vector[1]));
