@@ -159,3 +159,82 @@ void executeOpenCommand(vector<string> args_vector)
 		execvp(args[0],args);
 	}
 }
+
+
+void startRecording()
+{
+	
+	
+	int fdrecord = open("record.txt",O_WRONLY | O_CREAT | O_TRUNC ,0644);
+	char buffer[50];
+
+	while(1)
+	{
+		int fdbuf = open("Buffer.txt", O_RDWR | O_CREAT | O_TRUNC,0644);
+		string input;
+		cout<<varmap["PS1"];
+		getline(cin,input);
+		write(fdrecord, (varmap["PS1"]).c_str(),varmap["PS1"].length());
+		write(fdrecord, (input+"\n").c_str(),input.length()+1);
+
+		if(input=="record stop")
+		{	
+			close(fdrecord);
+			close(fdbuf);
+			cout<<"Recorded Successfully in record.txt file"<<endl;
+			return;
+		}
+
+		vector<string> args_vector;
+		getArguments(input,args_vector);
+		//cout<<"input "<<input<<endl;
+		int vect_size = args_vector.size();
+	    char  *args[vect_size+1];
+	    getArgumentsArray(args_vector,args);
+	    
+	    
+		if(fork()==0)
+		{
+			dup2(fdbuf,1);
+		//	dup2(fdbuf,2);
+				
+		    if(execvp(args[0], args)==-1)
+			{
+				//cout<<"Error in command with error "<<endl;
+				//write(fdbuf,"Error in command with error\n",28);
+				exit(1);
+			}
+		}
+		else
+		{
+			wait(NULL);
+			char wbuffer[50];
+			lseek(fdbuf,0,SEEK_SET);
+			close(fdbuf);
+
+			fdbuf = open("Buffer.txt", O_RDONLY,0644);
+			if(fdbuf==-1)
+			{
+				cout<<"error buffer fle";
+				return;
+			}
+			int n=read(fdbuf,wbuffer,50);
+			//cout<<"n os "<<n;
+			while (n>0)
+			{
+				
+				if(n>0)
+				{
+					write(fdrecord,wbuffer,n);
+					write(1,wbuffer,n);
+				    n=read(fdbuf,wbuffer,50);
+				}
+			}
+			close(fdbuf);
+			//cout<<"wait";
+			//getchar();
+		}		
+		
+	}
+	
+}

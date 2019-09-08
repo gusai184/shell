@@ -250,14 +250,13 @@ int main()
 			alarm(stoi(args_vector[1]));
 			continue;
 		}
-		//not working 
-// //		if(input=="./shell")
-// 		{
-// 			cout<<"in functions"<<endl;
-// 			executeShellCommand(input);
-// 			continue;
-// 		}
-		
+
+		if(input=="record start")
+		{
+			cout<<"Script Recordng Started....";
+			startRecording();
+			continue;
+		}
 		if(input=="exit")
 		{
 			exit(0);

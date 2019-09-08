@@ -1,0 +1,11 @@
+dharmesh@dharmesh-Lenovo-B570$ echo $HOME
+/home/dharmesh
+dharmesh@dharmesh-Lenovo-B570$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+dharmesh@dharmesh-Lenovo-B570$ ps
+  PID TTY          TIME CMD
+17887 pts/1    00:00:00 bash
+24163 pts/1    00:00:00 shell
+24169 pts/1    00:00:00 ps
+dharmesh@dharmesh-Lenovo-B570$ kdlf
+dharmesh@dharmesh-Lenovo-B570$ record stop

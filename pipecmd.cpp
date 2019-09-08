@@ -67,20 +67,9 @@ void executePipeCommands(vector<string> cmd)
 	
 	vector<string> vectcmd;
 	separatePipe(cmd,vectcmd);
-	for(auto x:vectcmd)
-	{
-		cout<<x<<":"<<endl;
-	}
-
+	
 	int fd[2];	
-		int fdd = 0;
-
-	/*if(pipe(fd)<0)
-	{
-		cout<<"error in pipe";
-		return;
-	}*/
-	cout<<"vec : "<<vectcmd.size();
+	int fdd = 0;
 	f(i,0,vectcmd.size()-1)
 	{
 		if(pipe(fd)<0)
@@ -98,12 +87,11 @@ void executePipeCommands(vector<string> cmd)
 			if(i!=0)
 				dup2(fdd,0);
 			
-			
-
 			if(i!=(vectcmd.size()-1))
 				dup2(fd[1],1);
 			
 			close(fd[0]);
+			close(fd[1]);
 			execvp(args[0],args);
 		}
 		else{
@@ -119,4 +107,3 @@ void executePipeCommands(vector<string> cmd)
 	// close(fd[1]);
 	// while(wait(NULL)>0);
 }
-

@@ -73,3 +73,5 @@ string  aliasFilter(string s);
 
 
 void executeOpenCommand(vector<string> input);
+
+void startRecording();
