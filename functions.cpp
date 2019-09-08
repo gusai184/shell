@@ -129,7 +129,11 @@ bool executeAssignmentCommand(string s)
 	if(getenv(name.c_str()) != NULL)
 		setenv(name.c_str(),checkForVar(value).c_str(),1);
 	else
+	{
 		varmap[name] = checkForVar(value);
+		if(expmap.find(name)!=expmap.end())
+			expmap[name]=checkForVar(value);
+	}
 	
 	
 	

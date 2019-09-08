@@ -3,6 +3,8 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <queue>
+#include<fstream>	
 
 #include <sys/wait.h>
 #include <unistd.h>
@@ -75,3 +77,14 @@ string  aliasFilter(string s);
 void executeOpenCommand(vector<string> input);
 
 void startRecording();
+
+//alarm
+
+
+void alarmHandler(int x,string msg);
+
+void checkAlarm(time_t alarmtime,string msg);
+
+void checkMissedAlarms();
+
+void alarmExit();

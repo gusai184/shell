@@ -1,8 +1,8 @@
 all:shell
 
 
-shell: main.o functions.o  pipecmd.o export.o alias.o
-	g++ main.o functions.o pipecmd.o export.o alias.o -o shell
+shell: main.o functions.o  pipecmd.o export.o alias.o alarm.o
+	g++ main.o functions.o pipecmd.o export.o alias.o alarm.o -o shell
 
 main.o: main.cpp 
 	g++ -c main.cpp 
@@ -19,6 +19,8 @@ export.o: export.cpp
 alias.o: alias.cpp
 	g++ -c alias.cpp
 
+alarm.o: alarm.cpp
+	g++ -c alarm.cpp
 
 rm:
-	rm  main.o functions.o pipecmd.o export.o
+	rm  main.o functions.o pipecmd.o export.o alias.o alarm.o

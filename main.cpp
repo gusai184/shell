@@ -3,7 +3,8 @@ extern char **environ;
 extern int errno;
 map<string,string> expmap;
 map<string,string> varmap;
-
+vector<int> vectalarm;
+vector<pair<time_t,string>> allalarm;
 char *env[6];
 int last_cmd_status;
 unordered_map<string,string> aliasmap;
@@ -20,14 +21,6 @@ string getmap(map<string,string> expmap)
 	//cout<<"inside getmap"<<s<<endl;
 	return s;
 }
-
-void  ALARMhandler(int sig)
-{
-  signal(SIGALRM, SIG_IGN);          /* ignore this signal       */
-  printf("Hello\n");
-  signal(SIGALRM, ALARMhandler);     /* reinstall the handler    */
-}
-
 void initShell()
 {
 	hist_file = fopen("history","a");
@@ -176,14 +169,14 @@ void sigintHandler(int sig_num)
     signal(SIGINT, sigintHandler); 
     fflush(stdout); 
     fclose(hist_file);
-    exit(0);
+   // exit(0);
 } 
 
 int main()
 {
 
 	signal(SIGINT, sigintHandler); 
-	signal(SIGALRM, ALARMhandler);
+	//signal(SIGALRM, ALARMhandler);
 
   
 	string input;	
@@ -193,6 +186,8 @@ int main()
 	initShell();
 	readShellRC();
 	cout<<"shellrc file configured"<<endl;
+	cout<<endl;
+	checkMissedAlarms();
 	printWecomeMessage();
 
 	while(1)
@@ -247,7 +242,8 @@ int main()
 		}
 		if(args_vector[0]=="alarm")
 		{
-			alarm(stoi(args_vector[1]));
+			//alarm(stoi(args_vector[1]));
+			alarmHandler(stoi(args_vector[1]),args_vector[2]);
 			continue;
 		}
 
@@ -259,6 +255,7 @@ int main()
 		}
 		if(input=="exit")
 		{
+			alarmExit();
 			exit(0);
 		}
 
@@ -341,8 +338,6 @@ int main()
 		cout<<"Some error occured or invalid command";
 	}
 				//cout<<endl;
-
 	}
-
 	return 0;
 }

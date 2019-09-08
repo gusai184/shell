@@ -428089,3 +428089,735 @@ export x
 x=2
 ./shell
 echo $x
+exit
+echo $x
+x=5
+export x
+x=6
+./shell
+echo $x
+exit
+x=1
+export x
+x=2
+./shell
+echo $x
+exit
+exit
+x=10
+export x
+y=19
+echo $x $y
+x=100
+./shell
+exit
+x=1
+export x
+y=22
+z=3
+export y
+./shell
+exit
+x=1
+clear
+clear
+exit
+echo $x
+echo $y
+x=3
+export
+export x
+./shell
+exit
+x=1
+y=2
+export x
+./shell
+echo $x
+date +%s
+man time
+man 2 time
+alarm 50
+alarm 100
+alarm 100
+alarm 100
+alarm 100
+alarm 500
+ext
+alarm 500
+ext
+clear
+ls
+alarm 15
+exit
+alarm 25
+ls
+ls
+ls
+ls
+alarm 5
+printenv
+oopen file.tx
+oopen file.tx
+open file.txta'open file.txt
+open file.txt
+oopen file.tx
+open file.txta'open file.txt
+
+HOME=dhamo
+cd ~
+exit
+PATH=dhamo
+ld
+PATH=dhamo
+ld
+sls
+PATH=dhamo
+ld
+sls
+ls
+PATH=dhamo
+ld
+sls
+ls
+exit
+HOME=dhamo
+cd ~
+echo ~
+./shell
+echo $HOME
+./shell
+ls
+alarm 5
+ls
+alarm 5
+
+exit
+alarm 5
+alarm 5
+alarm 10
+alarm 5
+alarm 10
+
+exit
+alarm 3 dhamo
+alarm 3 dhamo
+
+alarm 10 pratik chutia hai
+alarm 10 pratik chutia hai
+alarm 5 bhagvan
+alarm 10 pratik chutia hai
+alarm 5 bhagvan
+alrm 1 
+alarm 10 pratik chutia hai
+alarm 5 bhagvan
+alrm 1 
+alarm 5
+alarm 5 dhamo
+alarm 5
+alarm 5 dhamo
+
+alarm 5 hi
+alarm 10 
+alarm 10 
+clear
+
+alarm 5
+alarm 4 hi
+alarm 5
+alarm 4 hi
+alarm 3 dhamo
+alarm 5
+alarm 4 hi
+alarm 3 dhamo
+
+alarm 5 a
+alarm 5
+alarm 4 hi
+alarm 3 dhamo
+
+alarm 5 a
+alarm 6 b
+alarm 5
+alarm 4 hi
+alarm 3 dhamo
+
+alarm 5 a
+alarm 6 b
+alarm 7 9
+alarm 5
+alarm 4 hi
+alarm 3 dhamo
+
+alarm 5 a
+alarm 6 b
+alarm 7 9
+alarm 15 a
+alarm 15 a
+alarm 14 b
+alarm 15 a
+alarm 14 b
+alarm 13 c
+alarm 15 a
+alarm 14 b
+alarm 13 c
+alarm 12 d
+alarm 15 a
+alarm 14 b
+alarm 13 c
+alarm 12 d
+
+alarm 5 dhaom
+alarm 15 a
+alarm 14 b
+alarm 13 c
+alarm 12 d
+
+alarm 5 dhaom
+alarm 10 a
+alarm 10 a
+alarm 11 b
+alarm 10 a
+alarm 11 b
+alarm 12 c
+alarm 10 a
+alarm 11 b
+alarm 12 c
+
+ls
+
+ps
+
+pwd
+
+claer
+alarm 10 a
+alarm 11 b
+alarm 12 c
+
+ls
+
+ps
+
+pwd
+
+claer
+ls
+ps
+alarm 5 abc
+ls
+ps
+alarm 5 abc
+
+ls
+
+
+ps
+
+ls
+cat alarm.txt
+ls
+ps
+alarm 5 hi
+ls
+ps
+alarm 5 hi
+
+ps
+
+clear
+exi
+ls
+ps
+alarm 5 hi
+
+ps
+
+clear
+exi
+exit
+ls
+alarm 5 hi
+ls
+ls
+alarm 5 hi
+ls
+ls
+alarm 1 a
+ls
+ls
+alarm 1 a
+alarm 2 b
+ls
+ls
+alarm 1 a
+alarm 2 b
+alarm 10
+alarm 10 dhamo
+alarm 5 hi
+alarm cat alarm.txt
+
+alarm 3 mm
+exls
+alarm 10
+alarm 10 dhamo
+cat alarm.txt
+alarm 13 mi
+ls
+alarm 10
+alarm 10 dhamo
+cat alarm.txt
+alarm 13 mi
+alarm 10
+alarm 10 dhamo
+alarm 5 hi
+alarm cat alarm.txt
+
+alarm 3 mm
+exls
+alarm 10
+alarm 10 dhamo
+alarm 5 hi
+alarm cat alarm.txt
+
+alarm 3 mm
+cat alarm.txt
+alarm 3
+alarm 3 a
+alarm 3
+alarm 3 a
+alarm 5 b
+alarm 3
+alarm 3 a
+alarm 5 b
+alarm 1 c
+alarm 3
+alarm 3 a
+alarm 5 b
+alarm 1 c
+
+exit
+alarm 1 a
+alarm 1 a
+alarm b 2
+alarm b 2
+exit
+alarm 1 a
+alarm 1 a
+
+alarm 2 b
+alarm 1 a
+
+alarm 2 b
+a
+alarm 1 a
+
+alarm 2 b
+a
+alarm 3 c
+alarm 1 a
+
+alarm 2 b
+a
+alarm 3 c
+exit
+alarm 5 a
+alarm 5 a
+alarm 4 b
+alarm 5 a
+alarm 4 b
+
+
+ls
+
+cat alarm.txt
+
+gedit alarm.txt
+
+exit
+alarm 1 aa
+alarm 1 aa
+
+alarm 2 bb
+alarm 1 aa
+
+alarm 2 bb
+
+alarm 3 cc
+alarm 1 aa
+
+alarm 2 bb
+
+alarm 3 cc
+
+exit
+alarm 1 a
+alarm 1 a
+
+alarm 2 b
+alarm 1 a
+
+alarm 2 b
+
+alarm 3 c
+alarm 1 a
+
+alarm 2 b
+
+alarm 3 c
+
+alarm 4 d
+alarm 1 a
+
+alarm 2 b
+
+alarm 3 c
+
+alarm 4 d
+
+exir
+alarm 1 a
+
+alarm 2 b
+
+alarm 3 c
+
+alarm 4 d
+
+exir
+exit
+alarm 1 a
+alarm 1 a
+
+alarm 2 b
+alarm 1 a
+
+alarm 2 b
+
+alarm 3 c
+alarm 1 a
+
+alarm 2 b
+
+alarm 3 c
+alarm 1 hi
+alarm 1 hi
+
+alarm 2 bi
+alarm 1 hi
+
+alarm 2 bi
+
+alarm 1 a
+alarm 1 a
+alr
+alarm 1 a
+alr
+alarm 2 b
+alarm 1 a
+alr
+alarm 2 b
+alarm 3 c
+alarm 1 a
+alr
+alarm 2 b
+alarm 3 c
+man open
+[6~[6~OCOCOBOBOBOBOBOBOBOB[6~[6~[6~[6~exit
+alarm 1 a
+alr
+alarm 2 b
+alarm 3 c
+man open
+[6~[6~OCOCOBOBOBOBOBOBOBOB[6~[6~[6~[6~exit
+exit
+alarm aa 1
+
+alarm 11 a
+alarm aa 1
+
+alarm 11 a
+alarm 22 b
+alarm aa 1
+
+alarm 11 a
+alarm 22 b
+
+alarm 33 d
+exit
+alarm aa 1
+
+alarm 11 a
+alarm 22 b
+
+alarm 33 d
+alarm 45 dfdfd
+alarm 45 dfdfd
+man 2 alarm
+OBODman 2 read
+alarm 45 dfdfd
+man 2 alarm
+OBODman 2 read
+man read
+qexit
+alarm 45 dfdfd
+man 2 alarm
+OBODman 2 read
+man read
+qexit
+cexit
+alarm 45 dfdfd
+man 2 alarm
+OBODman 2 read
+man read
+qexit
+cexit
+exit
+exit
+exit
+exit
+exit
+alarm 60
+
+alarm 60 minute
+alarm 30 half
+alarm 15 quator
+alarm 5 l
+alarm 60
+
+alarm 60 minute
+alarm 30 half
+alarm 15 quator
+alarm 5 l
+exit
+alarm 60
+
+alarm 60 minute
+alarm 30 half
+alarm 15 quator
+alarm 60
+
+alarm 60 minute
+alarm 30 half
+alarm 60
+
+alarm 60 minute
+exit
+rm alarm.txt
+exit
+alarm 60 hi
+alarm 70 bi
+alarm 30 jj
+alarm 15 dfd
+exit
+cat alarm.txt
+exit
+alarm 5 hi
+alarm 5 hi
+
+exit
+alarm 5 ll
+alarm 5 ll
+ls
+
+EXIT
+alarm 5 ll
+ls
+
+EXIT
+exit
+alarm 5 hi
+alarm 5 hi
+ls
+
+alarm 5 bi
+alarm 5 hi
+ls
+
+alarm 5 bi
+
+alarm 15 pp
+alam 60 pp
+alarm 5 hi
+ls
+
+alarm 5 bi
+
+alarm 15 pp
+alam 60 pp
+exit
+Cclare
+Cclare
+exit
+rm alarm.txt
+exit
+alarm 1 one
+ls
+exit
+alarm 1 hi
+alarm 1 hi
+alarm 5 bi
+alarm 1 hi
+alarm 5 bi
+
+alarm 10 HI
+exit
+alarm 15 fifteen
+exot
+alarm 15 fifteen
+exot
+exit
+exit
+alarm 5 hi
+alarm 5 hi
+
+exit
+alarm 2 HI
+alarm 2 HI
+
+alarm 3 By
+alarm 2 HI
+
+alarm 3 By
+exit
+alarm 1 dhamo_rocks
+alarm 1 dhamo_rocks
+
+alarm 5 hi
+exit
+./shell
+exit
+alarm 6 HI
+exit
+exit
+alarm 5 dhamo
+alarm 5 dhamo
+
+alarm 6 Hi
+exit
+exit
+ls
+alarm 60 Hi
+alarm 30 Bi
+alarm 3 JI
+ls
+alarm 60 Hi
+alarm 30 Bi
+alarm 3 JI
+
+exit
+
+exit
+alarm 5 five
+alarm 5 five
+alarm 10 ten
+exit
+
+exit
+alarm 1 one
+alarm 1 one
+
+alarm 2 two
+alarm 1 one
+
+alarm 2 two
+alarm 3 three
+alarm 1 one
+
+alarm 2 two
+alarm 3 three
+
+exit
+alarm 10 ten
+alarm 15 f
+exit
+
+exit
+alarm 10 ten
+exit
+
+
+
+
+
+alarm 1 hi
+
+
+
+
+
+alarm 1 hi
+
+alarm 60 minute
+exit
+
+
+
+
+
+alarm 5 five
+exit
+
+
+alarm 15 fifteen
+exit
+
+exit
+alarm 10
+exit
+exit
+alarm 10 ten
+./shell
+exit
+alarm 10 ten
+exit
+exit
+alarm 5 five
+exit
+
+
+
+
+
+alarm 10 ten
+exit
+
+exit
+alarm 5 five
+exit
+
+
+
+alarm 10 ten
+alarm 12 twel
+exit
+
+
+exit
+alarm 10 ten
+alarm 12 twlvee
+exit
+
+
+alarm 3 three
+exit
+exit
+echo "HI" >> fil.txt
+cat fil.txt
+clear
+exit
+alarm 5 safadsf
+alarm 5 safadsf
+alarm 4 addads
+alarm 5 safadsf
+alarm 4 addads
+alarm 9 afsdafsad
+alarm 5 safadsf
+alarm 4 addads
+alarm 9 afsdafsad
+ext
+alarm 5 safadsf
+alarm 4 addads
+alarm 9 afsdafsad
+ext
+exit
