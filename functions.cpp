@@ -13,6 +13,19 @@ void printWecomeMessage()
         "***********************\n\n";    
 }
 
+void executeHistoryCommand()
+{
+	char * line = NULL;
+    size_t len = 0;
+    ssize_t read;
+
+	FILE * fp = fopen("history","r");
+	 while ((read = getline(&line, &len, fp)) != -1) {
+        	cout<<line;
+    }
+
+	fclose(fp);
+}
 
 void getArguments(string str,vector<string> &args) 
 { 

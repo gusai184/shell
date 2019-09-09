@@ -34,17 +34,15 @@ void checkAlarm(time_t alarmtime,string msg)
 {
 	
 	int child=fork();
+	vectalarm.push_back(child);
 	if(child==0)
 	{
 		while(time((time_t *)0)!=alarmtime){
 		}
-		cout<<"Alarm : "<<msg<<" " << time((time_t *)0)<<"\n";
+		cout<<"Alarm : "<<msg<<"\n";
 		exit(1);
 	}
-	else
-	{
-		vectalarm.push_back(child);
-	}
+	
 
 }
 	
@@ -74,13 +72,13 @@ void alarmExit()
 		cout<<"Not able to open alarm file";
 		return;
 	}
-	cout<<"alarm Exit"<<endl;
+
 	for(auto alm : allalarm)
 	{
 		if(alm.first > time((time_t *)0))
 		{
 			string alarm_record = to_string(alm.first)+":"+alm.second+"\n";
-			cout<<alarm_record<<endl;
+			//cout<<alarm_record<<endl;
 			write(fd,alarm_record.c_str(),alarm_record.size());
 		}
 	}

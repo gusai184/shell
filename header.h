@@ -22,6 +22,7 @@
 
 using namespace std;
 
+void executeHistoryCommand();
 void printWecomeMessage();
 
 void getArguments(string str,vector<string> &args);

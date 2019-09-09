@@ -23,7 +23,7 @@ string getmap(map<string,string> expmap)
 }
 void initShell()
 {
-	hist_file = fopen("history","a");
+	hist_file = fopen("history","a+");
 
 	if(getenv("varmap")!=NULL)
 	{
@@ -198,7 +198,9 @@ int main()
 		
 		cout<<varmap["PS1"];
 		getline(cin,input);
-		int i = fprintf(hist_file,"%s\n",input.c_str());
+		if(input.length()>0)
+			int i = fprintf(hist_file,"%s\n",input.c_str());
+		fflush(hist_file);
 		
 		
 		input = aliasFilter(input);
@@ -210,6 +212,11 @@ int main()
 		int vect_size = args_vector.size();
 		char  *args[vect_size+1];
 
+		if(input=="history")
+		{
+			executeHistoryCommand();
+			continue;
+		}
 		
 		if(isAssignmentCommand(input))
 		{
@@ -255,6 +262,7 @@ int main()
 		}
 		if(input=="exit")
 		{
+			fclose(hist_file);
 			alarmExit();
 			exit(0);
 		}
@@ -277,18 +285,18 @@ int main()
 			else		
 			{				
 
-				if(vect_size > 2  && (strcmp(args[2],">")==0 || strcmp(args[2],">>") == 0))
+				if(vect_size > 1  && (strcmp(args[1],">")==0 || strcmp(args[1],">>") == 0))
 				{
 				
 				   
-					if(strcmp(args[2],">")==0)
-						file_des = open(args[3],O_WRONLY | O_CREAT,S_IRWXU);
-					else if(strcmp(args[2],">>") == 0)
+					if(strcmp(args[1],">")==0)
+						file_des = open(args[2],O_WRONLY | O_CREAT,S_IRWXU);
+					else if(strcmp(args[1],">>") == 0)
 					{						
-						file_des = open(args[3],O_APPEND | O_WRONLY,S_IRWXU);
+						file_des = open(args[2],O_APPEND | O_WRONLY,S_IRWXU);
 						if(file_des<0)
 						{
-							file_des = open(args[3],O_WRONLY | O_CREAT,S_IRWXU);
+							file_des = open(args[2],O_WRONLY | O_CREAT,S_IRWXU);
 						}						
 					}
 					else
@@ -302,8 +310,8 @@ int main()
 						continue;
 					}
 					dup2(file_des,1);
+					args[1] = (char *)NULL;
 					args[2] = (char *)NULL;
-					args[3] = (char *)NULL;
 					execvp(args[0],args);
 				}
 				if(input=="./shell")
