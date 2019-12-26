@@ -28,12 +28,24 @@ If alarm is set and after that shell is closed, So whenever another shell is sta
 ![Screenshot from 2019-12-20 18-50-57](https://user-images.githubusercontent.com/28507452/71474866-820b1a00-2803-11ea-8b2d-a794d590de8a.png)
 As you can see in above screenshot alarm with 'bi' message is missed so when new shell is opened Missed alarm with bi message is displayed. And alarm with msg1 is displayed in second shell even it was set by first shell.
 
-7. Support of shelrc file (similar to bashrc file in bash)
+7. Support of shellrc file (similar to bashrc file in bash)
   Using bashrc file we can 
-  - Modify default value of environment variables (HOME, PATH, HOSTNAME, USER, PS1 )
-  - Add local variables visible to all shells
-  - Add alias visible to all shells
-  - Change default application for resplective extension
+    - Modify default value of environment variables (HOME, PATH, HOSTNAME, USER, PS1 )
+    - Add local variables visible to all shells
+    - Add alias visible to all shells
+    - Change default application for resplective extension
   ![Screenshot from 2019-12-23 17-54-19](https://user-images.githubusercontent.com/28507452/71475477-65bcac80-2806-11ea-845a-806ad81df874.png)
+  
+8. Default Application launch handling <br/>
+  eg: open abc.mp4 (will be launched via default application specified in shellrc file)
+  <br/>
+  
+9. Recording of all input and output to a file </br>
+   record start : to start recording </br>
+   record stop : to stop recording </br>
+   ouput will be stored in record.txt file
+   <br/>
+   ![Screenshot from 2019-12-26 17-48-49](https://user-images.githubusercontent.com/28507452/71475843-20997a00-2808-11ea-8c88-f4284d6e8962.png)
+
 
   
