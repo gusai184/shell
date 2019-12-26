@@ -47,5 +47,16 @@ As you can see in above screenshot alarm with 'bi' message is missed so when new
    <br/>
    ![Screenshot from 2019-12-26 17-48-49](https://user-images.githubusercontent.com/28507452/71475843-20997a00-2808-11ea-8c88-f4284d6e8962.png)
 
+10. Export command
+    export x 
+    now x variable will be visible to all child process.
+   
+11. Support for $$ and $?
+ - $$ : Returns terminal id <br/>
+ - $? : Status of last exected command <br/> 
+        It will return 0 for success and error no for failure.</br>
+  ![Screenshot from 2019-12-25 23-20-23](https://user-images.githubusercontent.com/28507452/71476093-5a1eb500-2809-11ea-86b6-78407a1b1814.png)
 
-  
+12. Association of ~ with HOME variable </br>
+  As we can do in linux here also we can use ~ instead of HOME variavle anywhere.</br>
+  eg. echo ~, cd ~
