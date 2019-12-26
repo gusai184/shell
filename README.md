@@ -7,7 +7,7 @@ shell is ready to take command
 
 </br>
 
-## Functinalities and Description
+## Functionalities and Description
 1. Builtin shell commands supported. eg: cat, pwd, ls, echo , clear.. </br>
 
 2. IO Redirection > and >> </br>
